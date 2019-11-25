@@ -22,9 +22,9 @@ class TodoElement extends React.Component {
   
     }
 
-    changeChkBox = () => {
-      const { item: {checked, key, text, color} } = this.props;
-
+    changeChkBox = (e) => {
+      const { item: 
+        {checked, key, text, color} } = this.props;
       this.props.handleEdit({
         key,
         text,
@@ -32,7 +32,6 @@ class TodoElement extends React.Component {
         checked: !checked,
       })
     }
-
   
     changeItem = () => {
       const editedItem = {
@@ -68,11 +67,9 @@ class TodoElement extends React.Component {
       }
     }
 
-    
-
     render() {
       const { item, checked } = this.props;
-  
+      
       return (
         <li key={item.key}
         className= {item.color}>
@@ -81,11 +78,11 @@ class TodoElement extends React.Component {
               <input id="editField"
                 name= {item.key}
                 type="text"
-                defaultValue={this.state.text ? this.state.text : item.text}
-                value={this.state.text}
-                onChange={(e)=>this.changeText(item, e.target.value)}
+                defaultValue={this.state.text}
+                value={this.state.text ? this.state.text : item.text}
+                onChange={(e)=>
+                  this.changeText(item, e.target.value)}
                 onKeyPress={this.keyPressed}
-                //когда есть checkbox, дефолт-значение не появляется
               >
               </input>
             </div>
@@ -93,9 +90,10 @@ class TodoElement extends React.Component {
             <div id={"item"}>
               <input id={"chkBox"}
               type="checkbox"
-              onClick = {this.changeChkBox}
-              checked={checked}
+              onClick = {(e)=> this.changeChkBox(e)}
+              checked={item.checked}
               className = {"gridEl"}
+              
               >
                </input>
               <div id= {"writtenTask"}

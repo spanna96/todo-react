@@ -15,7 +15,7 @@ class TodoApp extends React.Component {
   
   handleChange = (e) => {
     const text = e.target.value;
-    this.setState({ text: text });//берется значение из главного поля
+    this.setState({ text: text });
   }
 
   addItem = () => {
@@ -63,13 +63,13 @@ class TodoApp extends React.Component {
   for (let i = 0; i < this.state.items.length; i++) {
     if (this.state.items[i].checked == true) {
       this.changeColor (col, this.state.items[i])
-      console.log ("utut", this.state.items[i])
+
     }
 } }
  
   handleEdit = (thisItem) => {
     this.setState({
-      items: this.state.items.map((e) => { //создается новый массив
+      items: this.state.items.map((e) => {
         if (e.key == thisItem.key) {
     
           e.text = thisItem.text;
@@ -91,15 +91,12 @@ class TodoApp extends React.Component {
     });
   }
 
-  
-
   render() {
-
     return (
       <div id="toStart">
         <div>
           <h3 id="task">
-            Input your task: </h3>
+            Input your task</h3>
           <input id="inputField" type="text"
             value={this.state.text}
             onChange={this.handleChange}
@@ -111,11 +108,10 @@ class TodoApp extends React.Component {
         </div>
         <div>
           <button id="btnCol1"
-          onClick={() => this.getChoosedItems ("Color1")} >
+          onClick={() => this.getChoosedItems ("Color1")}  >
           </button>
           <button id="btnCol2"
           onClick={() => this.getChoosedItems ("Color2")} >
-
           </button>
           <button id="btnCol3"
           onClick={() => this.getChoosedItems ("Color3")} >
@@ -131,6 +127,7 @@ class TodoApp extends React.Component {
             handleEdit={this.handleEdit}
             handleDelete={this.handleDelete}
             items={this.state.items}
+            chkBoxVal ={this.chkBoxVal}
 
           />
         </div>
