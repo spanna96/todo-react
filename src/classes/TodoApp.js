@@ -1,5 +1,9 @@
 import React from 'react';
 import TodoList from './TodoList' ;
+import {getTodos} from './FunctionsForBack';
+import {addingToArr} from './FunctionsForBack';
+import {deleteEl} from './FunctionsForBack';
+import {updateEl} from './FunctionsForBack';
 
 function randomColorNumb(min, max) {
   return Math.random() * (max - min) + min;
@@ -7,8 +11,18 @@ function randomColorNumb(min, max) {
 let items = [];
 
 class TodoApp extends React.Component {
-  state = {
-    items: [],
+  componentWillMount () {
+   getTodos ()
+   .then(data=> {
+    console.log('data', data)
+    this.setState ({
+      items: data
+    })
+  })
+  }
+
+  state = { 
+    items: [], //оставить или concat
     text: '',
     color: '',
   };
