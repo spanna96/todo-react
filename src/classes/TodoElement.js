@@ -1,11 +1,17 @@
 import React from 'react';
+import { updateEl } from './FunctionsForBack';
 
 
 class TodoElement extends React.Component {
     state = {
       isChange: false ,
+      text: '' ,
     };
-  
+  componentDidMount () {
+    this.setState({
+      text: this.props.item.text,
+    })
+  }
     changeEdit = () => {
       this.setState({
         isChange: !this.state.isChange,
@@ -42,10 +48,10 @@ class TodoElement extends React.Component {
       };
       this.setState({ text: null })
       this.props.handleEdit(editedItem);
-      //берем из проПсов эту функц со значением текущего элемента
+      updateEl (editedItem)
     }
   
-    notToChangeItem = () => {
+    notToChangeItem = () => { 
       const lastItem = {
         key: this.state.key,
         text: this.props.item.text,
@@ -78,8 +84,7 @@ class TodoElement extends React.Component {
               <input id="editField"
                 name= {item.key}
                 type="text"
-                defaultValue={this.state.text}
-                value={this.state.text ? this.state.text : item.text}
+                value={this.state.text}
                 onChange={(e)=>
                   this.changeText(item, e.target.value)}
                 onKeyPress={this.keyPressed}

@@ -22,6 +22,7 @@ export async function deleteEl(item) {
           'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(item),
+
       });
 
     let index =  await response.json(); 

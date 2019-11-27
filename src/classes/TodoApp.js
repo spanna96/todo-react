@@ -14,7 +14,6 @@ class TodoApp extends React.Component {
   componentWillMount () {
    getTodos ()
    .then(data=> {
-    console.log('data', data)
     this.setState ({
       items: data
     })
@@ -22,7 +21,7 @@ class TodoApp extends React.Component {
   }
 
   state = { 
-    items: [], //оставить или concat
+    items: [], //оставить или concat 
     text: '',
     color: '',
   };
@@ -37,18 +36,19 @@ class TodoApp extends React.Component {
 
     const { items, text, color, checked } = this.state;
     const newItem = {
-      key: items.length + 1,
+      key: items[items.length-1].key+1,
       text,
       color: "Color"+c ,
       checked: false
     };
     if (text.trim()) {
       this.setState({
-        items: items.concat(newItem),
+        items: this.state.items.concat(newItem),
         text: '',
         color: newItem.color,
         checked: false
       });
+items.concat(addingToArr (newItem))
     }
   }
 
@@ -96,6 +96,7 @@ class TodoApp extends React.Component {
       color: '',
       checked: false
     });
+    items = updateEl(thisItem)
   }
 
   handleDelete = (thisItem) => {
@@ -103,6 +104,7 @@ class TodoApp extends React.Component {
       items: this.state.items.filter((e) => e.key !== thisItem.key),
       text: ''
     });
+    items = deleteEl(thisItem)
   }
 
   render() {
